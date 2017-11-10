@@ -12,7 +12,7 @@ app.on('ready', () => {
         height: 400
     })
     win.loadURL(url.format({
-        pathname: path.join(__dirname, 'index.html'),
+        pathname: path.join(__dirname, 'views/index.html'),
         protocol: 'file',
         slashed: true
     }))
