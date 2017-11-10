@@ -6,14 +6,20 @@ const url = require('url');
 
 let win;
 
-app.on('ready', () => {
-    win = new BrowserWindow({
-        width: 500,
-        height: 400
+createWindow = (width, height, view) => {
+    w = new BrowserWindow({
+        width: width,
+        height: height
     })
-    win.loadURL(url.format({
-        pathname: path.join(__dirname, 'views/index.html'),
+    w.loadURL(url.format({
+        pathname: path.join(__dirname, `views/${view}`),
         protocol: 'file',
         slashed: true
     }))
+
+    return w;
+}
+
+app.on('ready', () => {
+    win = createWindow(800, 600, "index.html");
 });
