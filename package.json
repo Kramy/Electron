@@ -1,0 +1,24 @@
+{
+  "name": "electron",
+  "version": "1.0.0",
+  "description": "Electron development.",
+  "main": "main.js",
+  "dependencies": {
+    "electron": "^1.7.9"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kramy/Electron.git"
+  },
+  "author": "Rafael Benavides Terrón <rabenter@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kramy/Electron/issues"
+  },
+  "homepage": "https://github.com/Kramy/Electron#readme"
+}
