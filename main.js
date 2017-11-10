@@ -6,20 +6,22 @@ const url = require('url');
 
 let win;
 
-createWindow = (width, height, view) => {
-    w = new BrowserWindow({
+createWindow = (width, height, view, debug) => {
+    var win = new BrowserWindow({
         width: width,
         height: height
-    })
-    w.loadURL(url.format({
-        pathname: path.join(__dirname, `views/${view}`),
+    });
+    win.loadURL(url.format({
+        pathname: path.join(__dirname, `views/${view}.html`),
         protocol: 'file',
         slashed: true
-    }))
+    }));
 
-    return w;
+    if (debug) win.webContents.openDevTools();
+    
+    return win;
 }
 
 app.on('ready', () => {
-    win = createWindow(800, 600, "index.html");
+    createWindow(800, 600, "index", true);
 });
