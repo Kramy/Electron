@@ -12,7 +12,7 @@ const autoprefixer = require('gulp-autoprefixer');
  */
 gulp.task('default', ['css', 'js', 'html'], () => {
     browserSync.init({
-        server: './views'
+        server: './resources/views'
     });
 
     gulp.watch('resources/js/**/*.js', ['js']).on('change', browserSync.reload);
@@ -32,7 +32,7 @@ gulp.task('js', () => {
                 min: '.min.js'
             }
         }))
-        .pipe(gulp.dest('dist/js/min'));
+        .pipe(gulp.dest('dist/js'));
   });
 
 /**

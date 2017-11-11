@@ -14,8 +14,11 @@
             > .right {
                 > .options {
                     list-style-type: none;
+                    text-align: right;
+                    padding: 0;
+                    margin: 0;
                     > li {
-                        float: right;
+                        display: inline-block;
                         > i {
                             -webkit-app-region: no-drag;
                         }

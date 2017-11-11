@@ -32,7 +32,7 @@ exports.createWindow = (width, height, view, debug) => {
     
     if (view != undefined) {
         win.loadURL(url.format({
-            pathname: path.join(__dirname, `views/${view}.html`),
+            pathname: path.join(__dirname, `dist/views/${view}.html`),
             protocol: 'file',
             slashed: true
         }));
