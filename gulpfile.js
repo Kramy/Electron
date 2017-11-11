@@ -15,24 +15,24 @@ gulp.task('default', ['css', 'js', 'html'], () => {
         server: './views'
     });
 
-    gulp.watch('resources/js/*.js', ['js']).on('change', browserSync.reload);
+    gulp.watch('resources/js/**/*.js', ['js']).on('change', browserSync.reload);
     gulp.watch('resources/sass/**/*.scss', ['css']).on('change', browserSync.reload);
-    gulp.watch('./views/*.html').on('change', browserSync.reload);
-    gulp.watch('views/*.html', ['html']).on('change', browserSync.reload);
+    gulp.watch('./views/**/*.html').on('change', browserSync.reload);
+    gulp.watch('views/**/*.html', ['html']).on('change', browserSync.reload);
 });
 
 /**
  * Task that minify js files.
  */
 gulp.task('js', () => {
-    gulp.src('resources/js/*.js')
+    gulp.src('resources/js/**/*.js')
         .pipe(minifyJs({
             ext: {
                 src: '.js',
                 min: '.min.js'
             }
         }))
-        .pipe(gulp.dest('resources/js/min'));
+        .pipe(gulp.dest('dist/js/min'));
   });
 
 /**
@@ -46,7 +46,7 @@ gulp.task('css', () => {
             browsers: ['last 2 versions'],
             cascade: false
         }))
-        .pipe(gulp.dest('resources/css'))
+        .pipe(gulp.dest('dist/css'))
         .pipe(browserSync.stream());
 });
 
@@ -56,16 +56,16 @@ gulp.task('css', () => {
 gulp.task('img', () => {
     gulp.src('resources/img/*')
         .pipe(minifyImg())
-        .pipe(gulp.dest('resources/img/min'));
+        .pipe(gulp.dest('dist/img'));
 });
 
 /**
  * Task that minify hmlt files.
  */
 gulp.task('html', () => {
-    gulp.src('views/*.html')
+    gulp.src('resources/views/**/*.html')
         .pipe(minifyHtml({
             collapseWhitespace: true
         }))
-        .pipe(gulp.dest('views/min'));
+        .pipe(gulp.dest('dist/views'));
 });
