@@ -20,8 +20,7 @@ gulp.task('default', ['css', 'js', 'html'], () => {
 
     gulp.watch('resources/js/**/*.js', ['js', electron.restart]).on('change', browserSync.reload);
     gulp.watch('resources/sass/**/*.scss', ['css', electron.restart]).on('change', browserSync.reload);
-    gulp.watch('views/**/*.html', ['html', electron.restart]).on('change', browserSync.reload);
-    gulp.watch('./views/**/*.html').on('change', browserSync.reload);
+    gulp.watch('resources/views/**/*.html', ['html', electron.restart]).on('change', browserSync.reload);
 });
 
 /**
