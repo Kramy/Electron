@@ -6,16 +6,19 @@ const url = require('url');
 
 let win;
 
-createWindow = (width, height, view, debug) => {
+exports.createWindow = (width, height, view, debug) => {
     var win = new BrowserWindow({
         width: width,
         height: height
     });
-    win.loadURL(url.format({
-        pathname: path.join(__dirname, `views/${view}.html`),
-        protocol: 'file',
-        slashed: true
-    }));
+    
+    if (view != undefined) {
+        win.loadURL(url.format({
+            pathname: path.join(__dirname, `views/${view}.html`),
+            protocol: 'file',
+            slashed: true
+        }));
+    }
 
     if (debug) win.webContents.openDevTools();
     
@@ -23,5 +26,5 @@ createWindow = (width, height, view, debug) => {
 }
 
 app.on('ready', () => {
-    createWindow(800, 600, "index", true);
+    exports.createWindow(800, 600, "index", true);
 });

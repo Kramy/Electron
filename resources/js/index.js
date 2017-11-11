@@ -1,5 +1,5 @@
 const remote = require('electron').remote
-const main = require('../main.js')
+const main = remote.require('./main.js')
 
 let button = document.createElement('button')
 button.textContent = "Ventana"
