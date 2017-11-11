@@ -4,6 +4,7 @@ const browserSync = require('browser-sync').create();
 const minifyJs = require('gulp-minify');
 const minifyCss = require('gulp-clean-css');
 const minifyImg = require('gulp-imagemin');
+const autoprefixer = require('gulp-autoprefixer');
 
 /**
  * Task that execute a local web server precompiling scss files.
@@ -42,6 +43,10 @@ gulp.task('sass', () => {
     gulp.src('resources/sass/**/*.scss')
         .pipe(sass())
         .pipe(minifyCss())
+        .pipe(autoprefixer({
+            browsers: ['last 2 versions'],
+            cascade: false
+        }))
         .pipe(gulp.dest('resources/css'))
         .pipe(browserSync.stream());
 });
