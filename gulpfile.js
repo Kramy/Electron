@@ -4,42 +4,41 @@ const browserSync = require('browser-sync').create();
 const minifyJs = require('gulp-minify');
 const minifyCss = require('gulp-clean-css');
 const minifyImg = require('gulp-imagemin');
+const minifyHtml = require('gulp-htmlmin');
 const autoprefixer = require('gulp-autoprefixer');
 
 /**
- * Task that execute a local web server precompiling scss files.
+ * 
  */
-gulp.task('serve', ['sass'], () => {
+gulp.task('default', ['css', 'js', 'html'], () => {
     browserSync.init({
-        server: './views',
-        localOnly: true,
-        files: './views'
+        server: './views'
     });
 
-    gulp.watch('resources/js/*.js', ['minifyJs']);
-    // gulp.watch('resources/js/*.js', ['minifyCss']);
-    gulp.watch('resources/sass/**/*.scss', ['sass']);
+    gulp.watch('resources/js/*.js', ['js']).on('change', browserSync.reload);
+    gulp.watch('resources/sass/**/*.scss', ['css']).on('change', browserSync.reload);
     gulp.watch('./views/*.html').on('change', browserSync.reload);
+    gulp.watch('views/*.html', ['html']).on('change', browserSync.reload);
 });
 
 /**
  * Task that minify js files.
  */
-gulp.task('minifyJs', () => {
+gulp.task('js', () => {
     gulp.src('resources/js/*.js')
-      .pipe(minifyJs({
-          ext: {
-              src: '.js',
-              min: '.min.js'
-          }
-      }))
-      .pipe(gulp.dest('resources/js/min'));
+        .pipe(minifyJs({
+            ext: {
+                src: '.js',
+                min: '.min.js'
+            }
+        }))
+        .pipe(gulp.dest('resources/js/min'));
   });
 
 /**
  * Task that precompile and minify scss files.
  */
-gulp.task('sass', () => {
+gulp.task('css', () => {
     gulp.src('resources/sass/**/*.scss')
         .pipe(sass())
         .pipe(minifyCss())
@@ -54,8 +53,19 @@ gulp.task('sass', () => {
 /**
  * Task that minify png, jpg, gif and svg files.
  */
-gulp.task('minifyImg', () => {
+gulp.task('img', () => {
     gulp.src('resources/img/*')
-    .pipe(minifyImg())
-    .pipe(gulp.dest('resources/img/min'));
+        .pipe(minifyImg())
+        .pipe(gulp.dest('resources/img/min'));
+});
+
+/**
+ * Task that minify hmlt files.
+ */
+gulp.task('html', () => {
+    gulp.src('views/*.html')
+        .pipe(minifyHtml({
+            collapseWhitespace: true
+        }))
+        .pipe(gulp.dest('views/min'));
 });
