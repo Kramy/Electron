@@ -1,0 +1,30 @@
+@import 'abstracts/variables';
+
+.window {
+    border: 1px solid #000000;
+    > .header {
+        > .top {
+            border: $window-border;
+            .left {}
+            .center {
+                color: #800080;
+                -webkit-user-select: none;
+                -webkit-app-region: drag;
+            }
+            > .right {
+                > .options {
+                    list-style-type: none;
+                    > li {
+                        float: right;
+                        > i {
+                            -webkit-app-region: no-drag;
+                        }
+                    }
+                }
+            }
+        }
+        > .bottom {
+            border: 1px solid #008000;
+        }
+    }
+}

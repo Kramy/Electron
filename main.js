@@ -4,12 +4,30 @@ const {app, BrowserWindow} = electron;
 const path = require('path');
 const url = require('url');
 
+/**
+ * Main frame.
+ */
 let win;
 
+/**
+ * Create a new window.
+ * 
+ * @param {int} width 
+ * @param {int} height 
+ * @param {string} view 
+ * @param {boolean} debug 
+ */
 exports.createWindow = (width, height, view, debug) => {
     var win = new BrowserWindow({
+        minWidth: width,
         width: width,
-        height: height
+        minHeight: height,
+        height: height,
+        // frame: false,
+        titleBarStyle: 'hiddenInset',
+        resizable: true,
+        show: false,
+        backgroundColor: ''
     });
     
     if (view != undefined) {
@@ -25,6 +43,16 @@ exports.createWindow = (width, height, view, debug) => {
     return win;
 }
 
+/**
+ * Once the application is fully loaded, the index frame is executed.
+ */
 app.on('ready', () => {
-    exports.createWindow(800, 600, "index", true);
+    win = exports.createWindow(1000, 600, 'index', true);
+    win.show();
 });
+
+/**
+ * The window is shown as soos as it's fully loaded.
+ */
+app.once('ready-to-show', () => {
+})
