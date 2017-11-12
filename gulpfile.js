@@ -13,7 +13,7 @@ const electron = require('electron-connect').server.create();
  */
 gulp.task('default', ['css', 'js', 'html'], () => {
     browserSync.init({
-        server: './resources/views'
+        server: 'dist/views'
     });
 
     electron.start();
