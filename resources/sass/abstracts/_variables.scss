@@ -1,4 +1,15 @@
-$window-border-color: rgb(0, 0, 0);
+$black: rgb(0, 0, 0);
+$dark-gray: rgba(255, 255, 255, 0.10);
+$gray: rgba(255, 255, 255, 0.20);
+$light-gray: rgba(255, 255, 255, 0.30);
+
+$window-backgraund-color: $dark-gray;
+
+
+$window-border-color: $black;
 $window-border-style: solid;
 $window-border-width: 1px;
 $window-border: $window-border-width $window-border-style $window-border-color;
+
+$window-shadow-border: 1px solid $gray;
+$window-shadow: inset 0 0 0 1px $gray;
