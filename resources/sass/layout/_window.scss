@@ -1,0 +1,44 @@
+html {
+    box-sizing: border-box;
+    height: 100%;
+    border: $window-border;
+}
+
+body {
+    box-sizing: border-box;
+    height: 100%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgb(17, 27, 15);
+    margin: 0;
+}
+
+.window {
+    > .header {
+        -webkit-app-region: drag;
+        > .top {
+            .left {}
+            .center {
+                color: #2f8000;
+                > .right {
+                    > .options {
+                        list-style-type: none;
+                        text-align: right;
+                        padding: 0;
+                        margin: 0;
+                        > li {
+                            display: inline-block;
+                            > i {
+                                -webkit-app-region: no-drag;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        > .bottom {
+            border: 1px solid #008000;
+            // -webkit-app-region: no-drag;
+            -webkit-user-select: none;
+        }
+    }
+}
