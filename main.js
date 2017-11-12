@@ -18,29 +18,31 @@ let win;
  * @param {boolean} debug 
  */
 exports.createWindow = (width, height, view, debug) => {
-    var win = new BrowserWindow({
+    var frame = new BrowserWindow({
         minWidth: width,
         width: width,
         minHeight: height,
         height: height,
-        // frame: false,
-        titleBarStyle: 'hiddenInset',
+        frame: false,
         resizable: true,
-        show: false,
-        backgroundColor: ''
+        show: false
     });
     
     if (view != undefined) {
-        win.loadURL(url.format({
+        frame.loadURL(url.format({
             pathname: path.join(__dirname, `dist/views/${view}.html`),
             protocol: 'file',
             slashed: true
         }));
     }
 
-    if (debug) win.webContents.openDevTools();
+    frame.on('close', () => {
+        frame = null;
+    });
+
+    if (debug) frame.webContents.openDevTools();
     
-    return win;
+    return frame;
 }
 
 /**
@@ -48,11 +50,18 @@ exports.createWindow = (width, height, view, debug) => {
  */
 app.on('ready', () => {
     win = exports.createWindow(1000, 600, 'index', true);
-    win.show();
-});
 
-/**
- * The window is shown as soos as it's fully loaded.
- */
-app.once('ready-to-show', () => {
-})
+    /**
+     * The window is shown as soos as it's fully loaded.
+     */
+    win.on('ready-to-show', () => {
+        win.show();
+    })
+
+    /**
+     * The application will close when window closes event.
+     */
+    win.on('closed', () => {
+        app.quit();
+    });
+});
