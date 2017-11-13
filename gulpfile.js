@@ -1,6 +1,5 @@
 const gulp = require('gulp');
 const sass = require('gulp-sass');
-const browserSync = require('browser-sync').create();
 const minifyJs = require('gulp-minify');
 const minifyCss = require('gulp-clean-css');
 const minifyImg = require('gulp-imagemin');
@@ -12,15 +11,12 @@ const electron = require('electron-connect').server.create();
  * 
  */
 gulp.task('default', ['css', 'js', 'html'], () => {
-    browserSync.init({
-        server: 'dist/views'
-    });
 
     electron.start();
 
-    gulp.watch('resources/js/**/*.js', ['js', electron.restart]).on('change', browserSync.reload);
-    gulp.watch('resources/sass/**/*.scss', ['css', electron.restart]).on('change', browserSync.reload);
-    gulp.watch('resources/views/**/*.html', ['html', electron.restart]).on('change', browserSync.reload);
+    gulp.watch('resources/js/**/*.js', ['js', electron.restart]);
+    gulp.watch('resources/sass/**/*.scss', ['css', electron.restart]);
+    gulp.watch('resources/views/**/*.html', ['html', electron.restart]);
 });
 
 /**
@@ -41,15 +37,14 @@ gulp.task('js', () => {
  * Task that precompile and minify scss files.
  */
 gulp.task('css', () => {
-    gulp.src('resources/sass/**/*.scss')
+    gulp.src('resources/sass/*.scss')
         .pipe(sass())
         .pipe(minifyCss())
         .pipe(autoprefixer({
             browsers: ['last 2 versions'],
             cascade: false
         }))
-        .pipe(gulp.dest('dist/css'))
-        .pipe(browserSync.stream());
+        .pipe(gulp.dest('dist/css'));
 });
 
 /**
