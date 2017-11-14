@@ -37,13 +37,13 @@ gulp.task('js', () => {
  * Task that precompile and minify scss files.
  */
 gulp.task('css', () => {
-    gulp.src('./resources/sass/*.scss')
-        // .pipe(sass.sync())
-        .pipe(sass({
-            includePaths: [
-                './resources/sass/'
-            ]
-        }))
+    gulp.src('./resources/sass/**/*.scss')
+        .pipe(sass.sync().on('error', sass.logError))
+        // .pipe(sass({
+        //     includePaths: [
+        //         './resources/sass/abstracts'
+        //     ]
+        // }).on('error', sass.logError))
         .pipe(minifyCss())
         .pipe(autoprefixer({
             browsers: ['last 2 versions'],
