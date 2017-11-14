@@ -38,7 +38,7 @@ gulp.task('js', () => {
  */
 gulp.task('css', () => {
     gulp.src('resources/sass/*.scss')
-        .pipe(sass())
+        .pipe(sass.sync())
         .pipe(minifyCss())
         .pipe(autoprefixer({
             browsers: ['last 2 versions'],
