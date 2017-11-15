@@ -1,5 +1,6 @@
 const electron = require('electron');
 const {app, BrowserWindow} = electron;
+const electronClient = require('electron-connect').client
 
 const path = require('path');
 const url = require('url');
@@ -7,6 +8,7 @@ const url = require('url');
 /**
  * Main frame.
  */
+let winClient;
 let win;
 
 /**
@@ -39,6 +41,7 @@ exports.createWindow = (width, height, view, debug) => {
 
     frame.on('close', () => {
         frame = null;
+        // winClient.sendMessage('close');
     });
 
     if (debug) frame.webContents.openDevTools();
@@ -51,6 +54,7 @@ exports.createWindow = (width, height, view, debug) => {
  */
 app.on('ready', () => {
     win = exports.createWindow(1000, 600, 'index', true);
+    winClient = electronClient.create(win);
 
     /**
      * The window is shown as soos as it's fully loaded.

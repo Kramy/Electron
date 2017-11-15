@@ -5,18 +5,23 @@ const minifyCss = require('gulp-clean-css');
 const minifyImg = require('gulp-imagemin');
 const minifyHtml = require('gulp-htmlmin');
 const autoprefixer = require('gulp-autoprefixer');
-const electron = require('electron-connect').server.create();
+const electronServer = require('electron-connect').server.create({
+    stopOnClose: true
+});
 
 /**
  * 
  */
 gulp.task('default', ['css', 'js', 'html'], () => {
+    electronServer.start();
+    
+    gulp.watch('./src/js/**/*.js', ['js', electronServer.restart()]);
+    gulp.watch('./src/sass/**/*.scss', ['css', electronServer.restart()]);
+    gulp.watch('./src/views/**/*.html', ['html', electronServer.restart()]);
 
-    electron.start();
-
-    gulp.watch('./src/js/**/*.js', ['js', electron.restart]);
-    gulp.watch('./src/sass/**/*.scss', ['css', electron.restart]);
-    gulp.watch('./src/views/**/*.html', ['html', electron.restart]);
+    electronServer.on('close', () => {
+        process.exit();
+    });
 });
 
 /**
