@@ -14,16 +14,16 @@ gulp.task('default', ['css', 'js', 'html'], () => {
 
     electron.start();
 
-    gulp.watch('./resources/js/**/*.js', ['js', electron.restart]);
-    gulp.watch('./resources/sass/**/*.scss', ['css', electron.restart]);
-    gulp.watch('./resources/views/**/*.html', ['html', electron.restart]);
+    gulp.watch('./src/js/**/*.js', ['js', electron.restart]);
+    gulp.watch('./src/sass/**/*.scss', ['css', electron.restart]);
+    gulp.watch('./src/views/**/*.html', ['html', electron.restart]);
 });
 
 /**
  * Task that minify js files.
  */
 gulp.task('js', () => {
-    gulp.src('./resources/js/**/*.js')
+    gulp.src('./src/js/**/*.js')
         .pipe(minifyJs({
             ext: {
                 src: '.js',
@@ -37,11 +37,11 @@ gulp.task('js', () => {
  * Task that precompile and minify scss files.
  */
 gulp.task('css', () => {
-    gulp.src('./resources/sass/**/*.scss')
+    gulp.src('./src/sass/**/*.scss')
         .pipe(sass.sync().on('error', sass.logError))
         // .pipe(sass({
         //     includePaths: [
-        //         './resources/sass/abstracts'
+        //         './src/sass/abstracts'
         //     ]
         // }).on('error', sass.logError))
         .pipe(minifyCss())
@@ -56,7 +56,7 @@ gulp.task('css', () => {
  * Task that minify png, jpg, gif and svg files.
  */
 gulp.task('img', () => {
-    gulp.src('./resources/img/*')
+    gulp.src('./src/img/*')
         .pipe(minifyImg())
         .pipe(gulp.dest('./dist/img'));
 });
@@ -65,7 +65,7 @@ gulp.task('img', () => {
  * Task that minify hmlt files.
  */
 gulp.task('html', () => {
-    gulp.src('./resources/views/**/*.html')
+    gulp.src('./src/views/**/*.html')
         .pipe(minifyHtml({
             collapseWhitespace: true
         }))
