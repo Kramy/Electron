@@ -12,22 +12,32 @@ const electronServer = require('electron-connect').server.create({
 /**
  * 
  */
-gulp.task('default', ['css', 'js', 'html'], () => {
-    electronServer.start();
-    
-    gulp.watch('./src/js/**/*.js', ['js', electronServer.restart()]);
-    gulp.watch('./src/sass/**/*.scss', ['css', electronServer.restart()]);
-    gulp.watch('./src/views/**/*.html', ['html', electronServer.restart()]);
-
-    electronServer.on('close', () => {
-        process.exit();
+gulp.task('default', ['compilers', 'watchers'], () => {
+    electronServer.start((state) => {
+        if (state == 'stopped') {
+            process.exit();
+        }
     });
 });
 
 /**
+ * Task that runs every watcher.
+ */
+gulp.task('watchers', () => {
+    gulp.watch('./src/js/**/*.js', ['compile:js', electronServer.restart]);
+    gulp.watch('./src/sass/**/*.scss', ['compile:css', electronServer.restart]);
+    gulp.watch('./src/views/**/*.html', ['compile:html', electronServer.restart]);
+});
+
+/**
+ * Task that runs every compiler.
+ */
+gulp.task('compilers', ['compile:css', 'compile:js', 'compile:html']);
+
+/**
  * Task that minify js files.
  */
-gulp.task('js', () => {
+gulp.task('compile:js', () => {
     gulp.src('./src/js/**/*.js')
         .pipe(minifyJs({
             ext: {
@@ -41,7 +51,7 @@ gulp.task('js', () => {
 /**
  * Task that precompile and minify scss files.
  */
-gulp.task('css', () => {
+gulp.task('compile:css', () => {
     gulp.src('./src/sass/**/*.scss')
         .pipe(sass.sync().on('error', sass.logError))
         // .pipe(sass({
@@ -60,7 +70,7 @@ gulp.task('css', () => {
 /**
  * Task that minify png, jpg, gif and svg files.
  */
-gulp.task('img', () => {
+gulp.task('compile:img', () => {
     gulp.src('./src/img/*')
         .pipe(minifyImg())
         .pipe(gulp.dest('./dist/img'));
@@ -69,7 +79,7 @@ gulp.task('img', () => {
 /**
  * Task that minify hmlt files.
  */
-gulp.task('html', () => {
+gulp.task('compile:html', () => {
     gulp.src('./src/views/**/*.html')
         .pipe(minifyHtml({
             collapseWhitespace: true
