@@ -25,7 +25,8 @@ exports.createWindow = (width, height, view, debug) => {
         height: height,
         frame: false,
         resizable: true,
-        show: false
+        show: false,
+        icon: './dist/img/icon.ico'
     });
     
     if (view != undefined) {
