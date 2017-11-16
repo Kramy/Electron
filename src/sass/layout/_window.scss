@@ -9,6 +9,7 @@ body {
     height: 100%;
     border: $window-shadow-border;
     background-color: $window-background-color;
+    color: $font-color;
 }
 
 .window {
@@ -23,29 +24,39 @@ body {
         > .top {
             display: inline-flex;
             > .left {
-                flex-grow: 1;
-                padding: 5px;
+                min-width: 113px;
             }
             > .center {
-                flex-grow: 4;
+                flex-grow: 1;
                 > .header-detail {
-                    background-color: $gray;
-                    border: 1px solid $gray;
-                    border-top: none;
-                    border-radius: 0 0 20px 20px;
-                    height: 10px;
+                    border-bottom: $frame-border-bottom;
+                    height: 8px;
+                    &::before {
+                        left: 107px;
+                        top: 0px;
+                        transform: rotate(45deg);
+                    }
+                    &::after {
+                        right: 107px;
+                        top: 0px;
+                        transform: rotate(-45deg);
+                    }
+                    &::before, &::after {
+                        width: 12px;
+                        height: 7px;
+                        content: '';
+                        position: absolute;
+                        bottom: 0;
+                        border-bottom: $frame-border-bottom;
+                    }
                 }
             }
             > .right {
-                flex-grow: 1;
-                padding: 5px;
+                min-width: 113px;
+                text-align: right;
                 > .options {
-                    list-style-type: none;
-                    text-align: right;
-                    padding: 0;
-                    margin: 0;
+                    display: inline-flex;
                     > li {
-                        display: inline-block;
                         > i {
                             -webkit-app-region: no-drag;
                         }
@@ -54,7 +65,7 @@ body {
             }
         }
         > .bottom {
-            border-bottom: $window-shadow-border;
+            border-bottom: $frame-border-bottom;
         }
     }
 }

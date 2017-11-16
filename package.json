@@ -7,7 +7,6 @@
     "electron": "^1.7.9"
   },
   "devDependencies": {
-    "browser-sync": "^2.18.13",
     "electron-connect": "^0.6.2",
     "electron-packager": "^9.1.0",
     "gulp": "^3.9.1",

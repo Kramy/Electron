@@ -1,17 +1,26 @@
 $black: rgb(0, 0, 0);
-$dark-gray: rgba(255, 255, 255, 0.10);
-$gray: rgba(255, 255, 255, 0.20);
-$light-gray: rgba(255, 255, 255, 0.30);
-$blue: rgb(56, 78, 97);;
 
-$window-background-color: $blue;
+$white: rgb(255, 255, 255);
+$white-10: rgba($white, 0.1);
+$white-20: rgba($white, 0.2);
+$white-30: rgba($white, 0.3);
 
-$window-backgraund-color: $dark-gray;
+$background-color: rgb(19, 22, 26);
+$font-color: rgb(152, 152, 152);
+
+$window-background-color: $background-color;
+
+$window-backgraund-color: $white-10;
 
 $window-border-color: $black;
 $window-border-style: solid;
 $window-border-width: 1px;
 $window-border: $window-border-width $window-border-style $window-border-color;
 
-$window-shadow-border: 1px solid $gray;
-$window-shadow: inset 0 0 0 1px $gray;
+$window-shadow-border: 1px solid $white-20;
+$window-shadow: inset 0 0 0 1px $white-20;
+
+$frame-border-width: 1px;
+$frame-border-style: solid;
+$frame-border-color: $white-10;
+$frame-border-bottom: $frame-border-width $frame-border-style $frame-border-color;
