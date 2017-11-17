@@ -15,14 +15,14 @@ body {
     // color: $font-color;
 }
 
-.window {
+.frame {
     display: flex;
     flex-direction: column;
     > .header {
         display: flex;
         flex-direction: column;
         background-color: $window-backgraund-color;
-        backdrop-filter: blur(5px);
+        // backdrop-filter: blur(5px);
         -webkit-app-region: drag;
         user-select: none;
         > .top {
@@ -32,28 +32,6 @@ body {
             }
             > .center {
                 flex-grow: 1;
-                > .header-detail {
-                    border-bottom: $frame-border-bottom;
-                    height: 8px;
-                    &::before {
-                        left: 107px;
-                        top: 0px;
-                        transform: rotate(45deg);
-                    }
-                    &::after {
-                        right: 107px;
-                        top: 0px;
-                        transform: rotate(-45deg);
-                    }
-                    &::before, &::after {
-                        width: 12px;
-                        height: 7px;
-                        content: '';
-                        position: absolute;
-                        bottom: 0;
-                        border-bottom: $frame-border-bottom;
-                    }
-                }
             }
             > .right {
                 min-width: 113px;
@@ -68,8 +46,32 @@ body {
                 }
             }
         }
+        // > .middle {}
         > .bottom {
             border-bottom: $frame-border-bottom;
         }
+    }
+}
+
+.header-detail {
+    border-bottom: $frame-border-bottom;
+    height: 8px;
+    &::before {
+        left: 107px;
+        top: 0px;
+        transform: rotate(45deg);
+    }
+    &::after {
+        right: 107px;
+        top: 0px;
+        transform: rotate(-45deg);
+    }
+    &::before, &::after {
+        width: 12px;
+        height: 7px;
+        content: '';
+        position: absolute;
+        bottom: 0;
+        border-bottom: $frame-border-bottom;
     }
 }
