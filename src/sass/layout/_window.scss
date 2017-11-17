@@ -9,18 +9,22 @@ body {
     height: 100%;
     border: $window-shadow-border;
     background-color: $window-background-color;
-    color: $font-color;
+    background-image: url('../img/bg.png');
+    background-position: top center;
+    background-repeat: no-repeat;
+    // color: $font-color;
 }
 
 .window {
     display: flex;
     flex-direction: column;
     > .header {
-        background-color: $window-backgraund-color;
-        -webkit-app-region: drag;
-        user-select: none;
         display: flex;
         flex-direction: column;
+        background-color: $window-backgraund-color;
+        backdrop-filter: blur(5px);
+        -webkit-app-region: drag;
+        user-select: none;
         > .top {
             display: inline-flex;
             > .left {
