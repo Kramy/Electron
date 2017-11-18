@@ -54,11 +54,6 @@ gulp.task('compile:js', () => {
 gulp.task('compile:css', () => {
   gulp.src('./src/sass/**/*.scss')
     .pipe(sass.sync().on('error', sass.logError))
-  // .pipe(sass({
-  //     includePaths: [
-  //         './src/sass/abstracts'
-  //     ]
-  // }).on('error', sass.logError))
     .pipe(minifyCss())
     .pipe(autoprefixer({
       browsers: ['last 2 versions'],
@@ -71,7 +66,7 @@ gulp.task('compile:css', () => {
  * Task that minify png, jpg, gif and svg files.
  */
 gulp.task('compile:img', () => {
-  gulp.src('./src/img/*')
+  gulp.src('./src/help/img/*')
     .pipe(minifyImg())
     .pipe(gulp.dest('./dist/img'))
 })
