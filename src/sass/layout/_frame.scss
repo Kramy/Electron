@@ -1,21 +1,18 @@
-html {
+html, body {
     box-sizing: border-box;
     height: 100%;
-    border: $window-border;
 }
 
-body {
-    box-sizing: border-box;
-    height: 100%;
-    border: $window-shadow-border;
+.background {
     background-color: $window-background-color;
     background-image: url('../img/bg_2.png');
     background-position: top center;
     background-repeat: no-repeat;
-    // color: $font-color;
 }
 
 .frame {
+    border: $frame-border;
+    box-shadow: $frame-shadow;
     display: flex;
     flex-direction: column;
     > .header {
@@ -25,16 +22,17 @@ body {
         // backdrop-filter: blur(5px);
         -webkit-app-region: drag;
         user-select: none;
+        border-bottom: $frame-border-bottom;
         > .top {
             display: inline-flex;
             > .left {
-                min-width: 113px;
+                min-width: 112px;
             }
             > .center {
                 flex-grow: 1;
             }
             > .right {
-                min-width: 113px;
+                min-width: 112px;
                 text-align: right;
                 > .options {
                     display: inline-flex;
@@ -47,9 +45,7 @@ body {
             }
         }
         // > .middle {}
-        > .bottom {
-            border-bottom: $frame-border-bottom;
-        }
+        // > .bottom {}
     }
 }
 
@@ -57,21 +53,21 @@ body {
     border-bottom: $frame-border-bottom;
     height: 8px;
     &::before {
-        left: 107px;
+        left: 105px;
         top: 0px;
         transform: rotate(45deg);
     }
     &::after {
-        right: 107px;
+        right: 105px;
         top: 0px;
         transform: rotate(-45deg);
     }
     &::before, &::after {
         width: 12px;
-        height: 7px;
+        height: 6px;
         content: '';
         position: absolute;
-        bottom: 0;
+        // bottom: 0;
         border-bottom: $frame-border-bottom;
     }
 }
