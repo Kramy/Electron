@@ -1,3 +1,4 @@
+// Colors
 $black: rgb(0, 0, 0);
 $white: rgb(255, 255, 255);
 
@@ -6,17 +7,12 @@ $white-20: rgba($white, 0.2);
 $white-30: rgba($white, 0.3);
 $white-50: rgba($white, 0.5);
 
-// $background-color: rgb(85, 39, 16);
-$background-color: rgb(43, 42, 41);
-$window-background-color: $background-color;
-// $font-color: rgb(152, 152, 152);
+$black-10: rgba($black, 0.1);
 
+$background-color: rgb(85, 39, 16);
 
-$window-backgraund-color: $white-10;
-
-// $window-border-color: $black;
-
-// $window-shadow-border: 1px solid $white-20;
+$header-backgraund-color: $white-10;
+$sidebar-background-color: $black-10;
 
 // Frame styles
 $frame-border-width: 1px;

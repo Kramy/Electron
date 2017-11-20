@@ -10,7 +10,7 @@ body {
 }
 
 .background {
-    background-color: $window-background-color;
+    background-color: $background-color;
     background-image: url('../img/bg_2.png');
     background-position: top center;
     background-repeat: no-repeat;
@@ -25,7 +25,7 @@ body {
         grid-template-rows: [start row-1] auto [row-2] auto [end];
         grid-column: col-1;
         grid-row: row-1;
-        background-color: $window-backgraund-color;
+        background-color: $header-backgraund-color;
         // backdrop-filter: blur(5px);
         -webkit-app-region: drag;
         user-select: none;
@@ -61,6 +61,16 @@ body {
     > .content {
         grid-column: col-1;
         grid-row: row-2;
+        display: grid;
+        grid-template-columns: [start col-1] auto [col-2] 1fr [end];
+        > .sidebar {
+            grid-column: col-1;
+            border-right: $frame-border-right;
+            background-color: $sidebar-background-color;
+        }
+        > .main {
+            grid-column: col-2;
+        }
     }
 }
 
