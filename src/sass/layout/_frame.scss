@@ -3,6 +3,12 @@ html, body {
     height: 100%;
 }
 
+body {
+    display: grid;
+    grid-template-columns: [start col-1] 1fr [end];
+    grid-template-rows: [start row-1] auto [row-2] 1fr [end];
+}
+
 .background {
     background-color: $window-background-color;
     background-image: url('../img/bg_2.png');
@@ -13,26 +19,29 @@ html, body {
 .frame {
     border: $frame-border;
     box-shadow: $frame-shadow;
-    display: flex;
-    flex-direction: column;
     > .header {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: [start col-1] 1fr [end];
+        grid-template-rows: [start row-1] auto [row-2] auto [end];
+        grid-column: col-1;
+        grid-row: row-1;
         background-color: $window-backgraund-color;
         // backdrop-filter: blur(5px);
         -webkit-app-region: drag;
         user-select: none;
         border-bottom: $frame-border-bottom;
         > .top {
-            display: inline-flex;
+            display: grid;
+            grid-template-columns: [start col-1] 112px [col-2] 1fr [col-3] 112px [end];
+            grid-row: 1;
             > .left {
-                min-width: 112px;
+                grid-column: col-1;
             }
             > .center {
-                flex-grow: 1;
+                grid-column: col-2;
             }
             > .right {
-                min-width: 112px;
+                grid-column: col-3;
                 text-align: right;
                 > .options {
                     display: inline-flex;
@@ -45,7 +54,13 @@ html, body {
             }
         }
         // > .middle {}
-        // > .bottom {}
+        > .bottom {
+            grid-row: 2;
+        }
+    }
+    > .content {
+        grid-column: col-1;
+        grid-row: row-2;
     }
 }
 
